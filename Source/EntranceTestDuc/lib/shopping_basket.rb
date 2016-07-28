@@ -39,7 +39,8 @@ class ShoppingBasket
   
   # total taxes value of cart
   def sales_tax
-    return (@listOfItem.inject(0){|sum,e| sum += e.product.sales_tax + e.product.import_tax}).round_to(2)
+    return (@listOfItem.inject(0){|sum,e| sum +=  
+          e.product != nil ? e.product.sales_tax + e.product.import_tax : 0 }).round_to(2)
   end
   
   # total value of cart
@@ -54,7 +55,12 @@ class ShoppingBasket
         if (index == 0)
           csv << ["Quantity", "Name", "Total"]
         end
-        csv << [item.quantity, item.product.name, item.total]
+        # check the product is valid
+        if (item.product != nil)
+          csv << [item.quantity, item.product.name, item.total]
+        else
+          csv << ["nil", "nil", "nil"]
+        end
         if (index == @listOfItem.size - 1)
           csv << ["Sales taxs:", sales_tax]
           csv << ["Total:", total]

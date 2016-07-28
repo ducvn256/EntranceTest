@@ -14,7 +14,7 @@ class ItemInReceipt
   
   def total
     if (@product != nil)
-      return @product.shelf_price * @quantity.to_f
+      return (@product.shelf_price * @quantity.to_f).round_to(2)
     end
     return 0;
   end
