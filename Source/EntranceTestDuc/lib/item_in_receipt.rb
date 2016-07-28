@@ -2,14 +2,17 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+
 class ItemInReceipt
   attr_accessor:product
   attr_accessor:quantity
-  attr_accessor:price
-  
-  def initialize(product,quantity,price)
+ 
+  def initialize(product,quantity)
     @product = product
     @quantity = quantity
-    @price = price
+  end
+  
+  def total
+    return (@product.price.to_f + import_tax + sales_tax) * @quantity.to_f
   end
 end

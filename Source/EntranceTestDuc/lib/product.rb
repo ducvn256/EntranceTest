@@ -3,10 +3,11 @@
 # and open the template in the editor.
 
 class Product
-  attr_accessor:name,:productType
-  def initialize(name,type)
+  attr_accessor:name,:productType,:price
+  def initialize(name,type,price)
     @name = name
     @productType = type
+    @price = price
   end
   
   # check whether apply sales tax for product
@@ -22,5 +23,21 @@ class Product
   # check whether apply imported tax for product
   def is_apply_import_tax
     return @name.downcase.match("import") != nil
+  end
+  
+    # get sales tax value of 1 item
+  def sales_tax
+    if (is_apply_sale_tax)
+      return (@price.to_f * 0.1)
+    end
+    return 0
+  end
+  
+  # get sales tax value of 1 item
+  def import_tax
+    if (is_apply_import_tax)
+      return (@price.to_f * 0.05)
+    end
+    return 0
   end
 end
