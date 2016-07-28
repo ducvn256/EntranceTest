@@ -1,3 +1,10 @@
 == EntranceTestDuc
 
-You should document your project here.
+==> UT this project
+Cd to root folder of project and run:
+Command line: rspec spec
+
+After run UT, program will output 3 files (at the same folder of project):
+- output1.csv
+- output2.csv
+- output3.csv
