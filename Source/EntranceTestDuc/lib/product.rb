@@ -40,4 +40,9 @@ class Product
     end
     return 0
   end
+  
+  # calculate shelf price
+  def shelf_price
+    return (price.to_f + import_tax + sales_tax).round_to(2)
+  end
 end

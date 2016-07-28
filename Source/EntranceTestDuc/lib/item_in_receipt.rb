@@ -13,6 +13,11 @@ class ItemInReceipt
   end
   
   def total
-    return (@product.price.to_f + import_tax + sales_tax) * @quantity.to_f
+    if (@product != nil)
+      return @product.shelf_price * @quantity.to_f
+    end
+    return 0;
   end
 end
+
+
