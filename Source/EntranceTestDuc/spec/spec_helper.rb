@@ -2,6 +2,7 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+require_relative '../lib/float'
 require_relative '../lib/product'
 require_relative '../lib/item_in_receipt'
 require_relative '../lib/shopping_basket'

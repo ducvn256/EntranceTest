@@ -2,6 +2,8 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+require 'csv'
+
 class ShoppingBasket
   attr_accessor:listOfItem
   # init with empty data
@@ -37,7 +39,7 @@ class ShoppingBasket
   
   # total taxes value of cart
   def sales_tax
-    return (@listOfItem.inject(0){|sum,e| sum += e.sales_tax + e.import_tax}).round_to(2)
+    return (@listOfItem.inject(0){|sum,e| sum += e.product.sales_tax + e.product.import_tax}).round_to(2)
   end
   
   # total value of cart
@@ -45,4 +47,19 @@ class ShoppingBasket
     return (@listOfItem.inject(0){|sum,e| sum += e.total}).round_to(2)
   end
   
+  # write Cart out to file
+  def write_csv filename
+    CSV.open(filename, "w") do |csv|
+      @listOfItem.each_with_index { |item, index|       
+        if (index == 0)
+          csv << ["Quantity", "Name", "Total"]
+        end
+        csv << [item.quantity, item.product.name, item.total]
+        if (index == @listOfItem.size - 1)
+          csv << ["Sales taxs:", sales_tax]
+          csv << ["Total:", total]
+        end
+      }
+    end
+  end
 end
