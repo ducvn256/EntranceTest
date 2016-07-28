@@ -1,5 +1,5 @@
 == EntranceTestDuc
-
+This project already implemented rspec fof UT
 ==> UT this project
 Cd to root folder of project and run:
 Command line: rspec spec
