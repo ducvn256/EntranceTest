@@ -11,9 +11,9 @@ class Product
   
   # check whether apply sales tax for product
   def is_apply_sale_tax
-    if (@productType == "BOOK" or 
-        @productType == "FOOD" or 
-        @productType == "MEDICAL")
+    if (@productType == ProductType::BOOK or 
+        @productType == ProductType::FOOD or 
+        @productType == ProductType::MEDICAL)
       return false
     end
     return true
@@ -21,6 +21,6 @@ class Product
   
   # check whether apply imported tax for product
   def is_apply_import_tax
-    
+    return @name.downcase.match("import") != nil
   end
 end
