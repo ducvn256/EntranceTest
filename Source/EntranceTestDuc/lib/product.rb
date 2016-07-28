@@ -8,4 +8,19 @@ class Product
     @name = name
     @productType = type
   end
+  
+  # check whether apply sales tax for product
+  def is_apply_sale_tax
+    if (@productType == "BOOK" or 
+        @productType == "FOOD" or 
+        @productType == "MEDICAL")
+      return false
+    end
+    return true
+  end
+  
+  # check whether apply imported tax for product
+  def is_apply_import_tax
+    
+  end
 end
